@@ -10,4 +10,4 @@ Link to paper [Show, Attend and Tell]("https://arxiv.org/abs/1502.03044")
 
 - Run ```Scripts/create_input_files.py``` script.
 
-- Run ```Scripts/train.py``` script and be patiend ;)
+- Run ```Scripts/train.py``` script and be patient ;)
