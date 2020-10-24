@@ -3,12 +3,12 @@ import torch.backends.cudnn as cudnn
 import torch.optim
 import torch.utils.data
 import torchvision.transforms as transforms
+from nltk.translate.bleu_score import corpus_bleu
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
-from models import Encoder, DecoderWithAttention
-from dataset import *
-from utils import *
-from nltk.translate.bleu_score import corpus_bleu
+from .models import Encoder, DecoderWithAttention
+from .dataset import *
+from .utils import *
 
 # Data parameters
 data_folder = "../Output folder" # folder with data files saved by create_input_files.py
@@ -28,7 +28,7 @@ start_epoch = 0
 epochs = 120  # number of epochs to train for (if early stopping is not triggered)
 epochs_since_improvement = 0  # keeps track of number of epochs since there's been an improvement in validation BLEU
 batch_size = 32
-workers = 1  # for data-loading; right now, only 1 works with h5py
+workers = 0  # for data-loading; right now, only 1 works with h5py
 encoder_lr = 1e-4  # learning rate for encoder if fine-tuning
 decoder_lr = 4e-4  # learning rate for decoder
 grad_clip = 5.  # clip gradients at an absolute value of
@@ -122,7 +122,7 @@ def main():
                                 decoder=decoder,
                                 criterion=criterion)
 
-        is_best = recent_bleu4 > bleu_score
+        is_best = recent_bleu4 > best_bleu4
         best_bleu4 = max(recent_bleu4, best_bleu4)
         if not is_best:
             epochs_since_improvement += 1

@@ -1,0 +1,8 @@
+.idea/
+Image folder/*
+caption data/*
+Output folder/*
+
+!Image folder/ReadMe
+!caption data/ReadMe
+!Output folder/ReadMe
