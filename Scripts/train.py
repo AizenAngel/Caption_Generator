@@ -6,9 +6,9 @@ import torchvision.transforms as transforms
 from nltk.translate.bleu_score import corpus_bleu
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
-from .models import Encoder, DecoderWithAttention
-from .dataset import *
-from .utils import *
+from models import Encoder, DecoderWithAttention
+from dataset import *
+from utils import *
 
 # Data parameters
 data_folder = "../Output folder" # folder with data files saved by create_input_files.py
